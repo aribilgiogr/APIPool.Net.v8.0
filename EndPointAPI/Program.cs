@@ -14,6 +14,9 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IToolRepository, ToolRepository>();
+
+builder.Services.AddSingleton<DepremRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -56,5 +59,7 @@ app.MapGet("/api/payments/{pay_id}", async (int pay_id, IPaymentRepository repos
 
     return Results.Ok(payment);
 });
+
+app.MapGet("/api/sondepremler", async (DepremRepository repo) => await repo.DepremleriGetir());
 
 app.Run();
