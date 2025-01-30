@@ -15,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IToolRepository, ToolRepository>();
 
+builder.Services.AddHttpClient();
 builder.Services.AddSingleton<DepremRepository>();
 
 var app = builder.Build();
